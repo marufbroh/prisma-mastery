@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { log } from "console";
 
 const prisma = new PrismaClient();
 
@@ -16,16 +17,31 @@ const main = async () => {
     // })
 
 
-    const updateMany = await prisma.post.updateMany({
+    // const updateMany = await prisma.post.updateMany({
+    //     where: {
+    //         title: "This is title 2"
+    //     },
+    //     data: {
+    //         published: true
+    //     }
+    // })
+
+    // console.log(updateMany);
+
+    const upsertData = await prisma.post.upsert({
         where: {
-            title: "This is title 2"
+            id: 10
         },
-        data: {
-            published: true
+        update: {
+            authorName: "Tamim"
+        },
+        create: {
+            title: "Title 1",
+            content: "Content 1"
         }
     })
 
-    console.log(updateMany);
+    console.log(upsertData);
 }
 
 main();
