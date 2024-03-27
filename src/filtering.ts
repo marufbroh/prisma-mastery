@@ -60,9 +60,28 @@ const filtering = async () => {
                 startsWith: "u"
             }
         }
-    })
+    });
 
-    console.log(startsWith);
+
+
+    const endsWith = await prisma.user.findMany({
+        where: {
+            email: {
+                endsWith: ".com"
+            }
+        }
+    });
+
+
+    const equals = await prisma.user.findMany({
+        where: {
+            email: {
+                equals: "user1@ph.com"
+            }
+        }
+    });
+
+    console.log(equals);
 }
 
 
