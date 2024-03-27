@@ -33,7 +33,7 @@ const main = async () => {
         data: {
             title: "this is title 5",
             content: "this is content on this post...5",
-            authorId: 3,
+            authorId: 2,
             postCategory: {
                 create: [
                     {
