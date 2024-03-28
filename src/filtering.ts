@@ -81,7 +81,37 @@ const filtering = async () => {
         }
     });
 
-    console.log(equals);
+
+    const userNameArray = ['user1', 'user2', 'user5'];
+
+    const userNamesByArray = await prisma.user.findMany({
+        where: {
+            username: {
+                in: userNameArray
+            }
+        }
+    });
+
+
+
+    const inDepthData = await prisma.user.findUnique({
+        where: {
+            id: 2
+        },
+        include: {
+            post: {
+                include: {
+                    postCategory: {
+                        include: {
+                            category: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    console.dir(inDepthData, { depth: Infinity });
 }
 
 
