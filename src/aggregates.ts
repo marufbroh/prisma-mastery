@@ -42,9 +42,19 @@ const aggregates = async () => {
         _min: {
             age: true
         }
-    })
+    });
 
-    console.log(minAge);
+
+    const countNonNumFiled = await prisma.post.aggregate({
+        _count: {
+            title: true
+        },
+        where: {
+            published: true
+        }
+    });
+
+    console.log(countNonNumFiled);
 
 };
 
